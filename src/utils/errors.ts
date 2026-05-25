@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export class AppError extends Error {
   constructor(
     message: string,
@@ -14,20 +12,6 @@ export class AppError extends Error {
 
 export function toAppError(error: unknown): AppError {
   if (error instanceof AppError) return error;
-
-  if (axios.isAxiosError(error)) {
-    const status = error.response?.status;
-    if (status === 401 || status === 403) {
-      return new AppError("DataForSEO authentication failed or access was denied.", "DATAFORSEO_AUTH_ERROR", status);
-    }
-    if (status === 429) {
-      return new AppError("DataForSEO rate limit exceeded.", "DATAFORSEO_RATE_LIMIT", status);
-    }
-    if (error.code === "ECONNABORTED") {
-      return new AppError("DataForSEO request timed out.", "DATAFORSEO_TIMEOUT", status);
-    }
-    return new AppError(error.message, "DATAFORSEO_HTTP_ERROR", status, sanitizeDetails(error.response?.data));
-  }
 
   if (error instanceof Error) {
     return new AppError(error.message, "INTERNAL_ERROR");

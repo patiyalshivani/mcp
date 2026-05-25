@@ -4,8 +4,11 @@ export const logger = pino({
   level: process.env.LOG_LEVEL ?? "info",
   redact: {
     paths: [
-      "DATAFORSEO_PASSWORD",
+      "SEOSCORE_API_KEY",
+      "PSI_API_KEY",
       "password",
+      "*apiKey",
+      "*.apiKey",
       "*.password",
       "authorization",
       "headers.authorization",

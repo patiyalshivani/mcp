@@ -18,8 +18,8 @@ export default function handler(_req: IncomingMessage, res: ServerResponse): voi
     status: "ok",
     nodeVersion: process.version,
     env: {
-      hasLogin: Boolean(process.env.DATAFORSEO_LOGIN),
-      hasPassword: Boolean(process.env.DATAFORSEO_PASSWORD),
+      hasSeoScoreKey: Boolean(process.env.SEOSCORE_API_KEY),
+      hasPsiKey: Boolean(process.env.PSI_API_KEY),
       hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
       authMode: normalizedAuthMode
     }

@@ -157,8 +157,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         status: "ok",
         nodeVersion: process.version,
         env: {
-          hasLogin: Boolean(process.env.DATAFORSEO_LOGIN),
-          hasPassword: Boolean(process.env.DATAFORSEO_PASSWORD),
+          hasSeoScoreKey: Boolean(process.env.SEOSCORE_API_KEY),
+          hasPsiKey: Boolean(process.env.PSI_API_KEY),
           hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
           authMode: getAuthMode()
         }

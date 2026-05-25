@@ -1,6 +1,6 @@
 # No-API Fallbacks
 
-Use this when DataForSEO credentials or MCP tools are unavailable.
+Use this when optional API credentials or MCP tools are unavailable.
 
 ## Hard Rule
 
@@ -10,32 +10,43 @@ Never fabricate:
 
 - Search Console data
 - GA4 data
-- Lighthouse scores
+- Lighthouse or PageSpeed scores
 - Core Web Vitals field data
+- indexed page counts
+- backlinks
+- spam scores
+- ranking data
 - crawl results that were not actually checked
 - HTTP status codes that were not verified
-- schema, heading, or link findings that were not observed
+- schema, heading, link, or analytics findings that were not observed
 
-## DataForSEO Missing
-
-Fallback:
-
-- analyze public pages
-- inspect titles, metadata, schema, headings, links, sitemap, and robots.txt
-- ask for a crawl export if the user needs site-wide technical data
+## SEO Score API Missing
 
 State:
 
 ```text
-DataForSEO tools are not connected, so live technical audit checks were not verified.
+SEO Score API unavailable — SEOSCORE_API_KEY not set.
 ```
-
-## Credentials Missing
 
 Fallback:
 
-- guide the user to set `DATAFORSEO_LOGIN` and `DATAFORSEO_PASSWORD`
-- continue with public SEO analysis if they do not want to configure credentials
+- continue with public robots.txt, sitemap, HTML, metadata, schema, and analytics-tag checks
+- mark composite API checks as unavailable
+
+## PageSpeed Insights Missing
+
+If `PSI_API_KEY` is missing, unauthenticated PSI calls may still work for small ad-hoc audits but are heavily rate-limited.
+
+If PSI fails, state:
+
+```text
+Performance metrics unavailable — Google PSI verification required.
+```
+
+Fallback:
+
+- report observable performance hints only
+- do not give numeric performance or Core Web Vitals scores
 
 ## Google Search Console Missing
 
@@ -46,26 +57,11 @@ Fallback:
 
 Do not claim whether Google indexed a page.
 
-## PageSpeed Or Lighthouse Missing
-
-Fallback:
-
-- report observable performance hints only
-- do not give numeric performance scores
-
-Allowed observations:
-
-- large images
-- many third-party scripts
-- render-blocking CSS/JS hints
-- missing lazy loading
-- slow fetch response time
-
 ## Crawl Data Missing
 
 Fallback:
 
-- inspect the provided public URL manually
-- ask for a crawl export from Screaming Frog, Sitebulb, Ahrefs, Semrush, or DataForSEO
+- inspect the provided public URL only
+- ask for a crawl export from Screaming Frog, Sitebulb, Ahrefs, Semrush, or a similar crawler if the user needs site-wide technical data
 
 Do not estimate crawl-wide issue counts.

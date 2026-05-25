@@ -1,7 +1,7 @@
 {
   "name": "technical-seo-audit-mcp",
   "version": "1.0.0",
-  "description": "Technical SEO audit MCP server powered by DataForSEO OnPage APIs.",
+  "description": "Technical SEO audit MCP server with robots, sitemap, on-page, schema, analytics, and PageSpeed checks.",
   "type": "module",
   "private": true,
   "main": "dist/server.js",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "pino": "^9.5.0",
     "zod": "^3.24.1"

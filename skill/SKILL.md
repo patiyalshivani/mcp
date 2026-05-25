@@ -1,10 +1,8 @@
 ---
-name: technical-seo-audit-mcp
+name: technical-seo-audit
 description: >
-  Instructions for using the local technical SEO audit MCP server with Claude,
-  Codex, Cursor, VS Code Agent Mode, and SEO agents. Use when connecting the
-  audit tool, setting up MCP config, testing URL-level audits, troubleshooting
-  credentials, or falling back to no-API technical SEO analysis.
+  Advanced Technical SEO Audit Agent for ecommerce, SaaS, service businesses,
+  IT companies, Shopify stores, WordPress websites, and custom web applications.
 ---
 
 # Technical SEO Audit MCP Skill
@@ -28,12 +26,13 @@ Load these files when needed:
 
 ## Core Rules
 
-- Never hardcode DataForSEO credentials.
+- Never hardcode API keys.
 - Use environment variables or MCP client `env` blocks only.
-- Never print or log `DATAFORSEO_PASSWORD`.
-- If MCP tools are unavailable, do not invent live crawl, status, schema, link, or performance data.
+- Never print or log `SEOSCORE_API_KEY` or `PSI_API_KEY`.
+- If MCP tools are unavailable, do not invent live crawl, status, schema, link, indexability, analytics, or performance data.
 - If credentials are missing, use no-API fallback analysis and clearly state the limitation.
 - Prefer the local MCP server already built in this folder over asking the user to regenerate files.
+- Respect robots.txt, crawl-delay, limited crawl scope, and URL-parameter safety.
 
 ## Expected Local Tool
 
@@ -49,7 +48,26 @@ If the user asks to run a technical SEO audit:
 2. If available, call the relevant tool.
 3. If not available, load `references/mcp-server-setup.md`.
 4. If credentials are missing, load `references/no-api-fallbacks.md`.
-5. Give concise setup or fallback guidance.
+5. Separate verified, partially verified, estimated, and unverified findings.
+6. Give concise setup or fallback guidance.
+
+## Audit Structure
+
+Every audit report must include:
+
+- Executive Summary
+- Findings Table
+- Priority Recommendations
+- Business Impact Analysis
+
+The audit itself must be divided into:
+
+- Part 1: Indexability and Crawlability
+- Part 2: On-Page SEO Analysis
+- Part 3: Performance and Mobile SEO
+- Part 4: Structured Data and Analytics
+
+Each issue must include URL, issue type, severity, recommendation, and confidence level.
 
 ## Final Response
 

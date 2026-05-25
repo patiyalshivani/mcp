@@ -1,27 +1,47 @@
 # Technical SEO Audit MCP Server
 
-Focused MCP server for technical SEO audits powered by DataForSEO OnPage Instant Pages.
+Focused MCP server for technical SEO audits only.
 
 ## What It Exposes
 
-- `technical_seo_audit`: audits one URL and returns HTTP status, title, meta description, headings, schema, link counts, DataForSEO checks, and page metrics.
+- `technical_seo_audit`: audits one public URL and returns a four-part technical SEO report:
+  - indexability and crawlability
+  - on-page SEO analysis
+  - performance and mobile SEO
+  - structured data and analytics
 
-The project intentionally exposes technical audit functionality only. Keyword research, SERP analysis, backlinks, competitor analysis, and rankings tools are not registered.
+The project intentionally exposes no keyword research, SERP analysis, backlinks, competitor, or ranking tools.
+
+## Verification Sources
+
+The tool always checks public crawl-visible signals first:
+
+- `robots.txt`
+- XML sitemap locations
+- target page HTML
+- HTTP status and redirects
+- title, description, headings, canonicals, schema, images, links, analytics tags, and social profile links
+- custom 404 behavior
+
+Optional API verification is used when keys are configured:
+
+- `SEOSCORE_API_KEY`: SEO Score API first-pass audit summary
+- `PSI_API_KEY`: Google PageSpeed Insights mobile and desktop verification
+
+Unavailable metrics are reported as unverified instead of estimated.
 
 ## Environment
 
-Set DataForSEO credentials in `.env` locally or in your deployment environment:
+Set optional API keys in `.env` locally or in your deployment environment:
 
 ```env
-DATAFORSEO_LOGIN=your-login
-DATAFORSEO_PASSWORD=your-password
-DATAFORSEO_BASE_URL=https://api.dataforseo.com
-DATAFORSEO_TIMEOUT_MS=30000
-DATAFORSEO_RATE_LIMIT_PER_SECOND=3
-DATAFORSEO_MAX_CONCURRENCY=5
-DATAFORSEO_CACHE_TTL_SECONDS=3600
+SEOSCORE_API_KEY=
+PSI_API_KEY=
+TECHNICAL_AUDIT_TIMEOUT_MS=30000
+TECHNICAL_AUDIT_USER_AGENT=TechnicalSeoAuditMcp/1.0
 LOG_LEVEL=info
 MCP_AUTH_MODE=none
+MCP_AUTH_TOKEN=
 ```
 
 For ChatGPT custom MCP connectors, use `MCP_AUTH_MODE=none` unless you add OAuth. For private token-based clients, set `MCP_AUTH_MODE=token` and `MCP_AUTH_TOKEN`.
@@ -59,11 +79,15 @@ For local stdio clients:
 ## Example Prompt
 
 ```text
-Run a technical SEO audit for https://example.com and summarize the most important issues.
+Run a full technical SEO audit for https://example.com.
+
+Validate crawlability, indexability signals, metadata, canonicals, structured data,
+performance, mobile usability, broken-link limitations, and analytics setup.
 ```
 
 ## Security Notes
 
 - Keep `.env` out of git.
-- Do not hardcode DataForSEO credentials in source files.
+- Do not hardcode API keys in source files.
+- Do not paste real API keys into chat.
 - Rotate credentials if they are exposed.

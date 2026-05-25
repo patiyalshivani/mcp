@@ -22,19 +22,18 @@ Expected output:
 dist/server.js
 ```
 
-## Credentials
+## Optional API Keys
 
 Use either `.env` or the MCP client `env` block.
 
-Required:
-
 ```env
-DATAFORSEO_LOGIN=your-login
-DATAFORSEO_PASSWORD=your-password
-DATAFORSEO_BASE_URL=https://api.dataforseo.com
+SEOSCORE_API_KEY=
+PSI_API_KEY=
+TECHNICAL_AUDIT_TIMEOUT_MS=30000
+TECHNICAL_AUDIT_USER_AGENT=TechnicalSeoAuditMcp/1.0
 ```
 
-Never paste real credentials into chat when a local file or config can be used.
+Do not paste real API keys into chat when a local file or config can be used.
 
 ## MCP Client Config
 

@@ -1,6 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { DataForSeoClient } from "./services/dataforseoClient.js";
-import { registerOnPageAnalysisTool } from "./tools/onPageAnalysis.js";
+import { registerTechnicalSeoAuditTool } from "./tools/technicalSeoAudit.js";
 
 export function createServer(): McpServer {
   const server = new McpServer({
@@ -8,9 +7,7 @@ export function createServer(): McpServer {
     version: "1.0.0"
   });
 
-  const client = new DataForSeoClient();
-
-  registerOnPageAnalysisTool(server, client);
+  registerTechnicalSeoAuditTool(server);
 
   return server;
 }

@@ -8,13 +8,10 @@ loadDotenv({
 });
 
 const EnvSchema = z.object({
-  DATAFORSEO_LOGIN: z.string().default(""),
-  DATAFORSEO_PASSWORD: z.string().default(""),
-  DATAFORSEO_BASE_URL: z.string().url().default("https://api.dataforseo.com"),
-  DATAFORSEO_TIMEOUT_MS: z.coerce.number().int().positive().default(30000),
-  DATAFORSEO_RATE_LIMIT_PER_SECOND: z.coerce.number().int().positive().default(3),
-  DATAFORSEO_MAX_CONCURRENCY: z.coerce.number().int().positive().default(5),
-  DATAFORSEO_CACHE_TTL_SECONDS: z.coerce.number().int().nonnegative().default(3600),
+  SEOSCORE_API_KEY: z.string().default(""),
+  PSI_API_KEY: z.string().default(""),
+  TECHNICAL_AUDIT_TIMEOUT_MS: z.coerce.number().int().positive().default(30000),
+  TECHNICAL_AUDIT_USER_AGENT: z.string().default("TechnicalSeoAuditMcp/1.0"),
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]).default("info")
 });
 

@@ -112,8 +112,8 @@ async function handleWebRequest(request: Request): Promise<Response> {
         status: "ok",
         nodeVersion: process.version,
         env: {
-          hasLogin: Boolean(process.env.DATAFORSEO_LOGIN),
-          hasPassword: Boolean(process.env.DATAFORSEO_PASSWORD),
+          hasSeoScoreKey: Boolean(process.env.SEOSCORE_API_KEY),
+          hasPsiKey: Boolean(process.env.PSI_API_KEY),
           hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
           authMode: getAuthMode()
         }
@@ -166,13 +166,13 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     }
 
     if (req.method === "GET" && req.url?.includes("/health")) {
-      const hasLogin = Boolean(process.env.DATAFORSEO_LOGIN);
-      const hasPassword = Boolean(process.env.DATAFORSEO_PASSWORD);
+      const hasSeoScoreKey = Boolean(process.env.SEOSCORE_API_KEY);
+      const hasPsiKey = Boolean(process.env.PSI_API_KEY);
       const hasToken = Boolean(process.env.MCP_AUTH_TOKEN);
       return sendJson(res, 200, {
         status: "ok",
         nodeVersion: process.version,
-        env: { hasLogin, hasPassword, hasToken, authMode: getAuthMode() }
+        env: { hasSeoScoreKey, hasPsiKey, hasToken, authMode: getAuthMode() }
       });
     }
 

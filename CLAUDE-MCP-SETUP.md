@@ -22,14 +22,15 @@ The server entrypoint is:
 C:\Users\Admin\Desktop\mcp\dist\server.js
 ```
 
-## Credentials
+## Optional API Keys
 
 Use environment variables only:
 
 ```env
-DATAFORSEO_LOGIN=your-login
-DATAFORSEO_PASSWORD=your-password
-DATAFORSEO_BASE_URL=https://api.dataforseo.com
+SEOSCORE_API_KEY=
+PSI_API_KEY=
+TECHNICAL_AUDIT_TIMEOUT_MS=30000
+TECHNICAL_AUDIT_USER_AGENT=TechnicalSeoAuditMcp/1.0
 ```
 
 Do not commit `.env`.
@@ -53,9 +54,8 @@ Use:
         "C:\\Users\\Admin\\Desktop\\mcp\\dist\\server.js"
       ],
       "env": {
-        "DATAFORSEO_LOGIN": "your-login",
-        "DATAFORSEO_PASSWORD": "your-password",
-        "DATAFORSEO_BASE_URL": "https://api.dataforseo.com"
+        "SEOSCORE_API_KEY": "",
+        "PSI_API_KEY": ""
       }
     }
   }
@@ -87,4 +87,4 @@ Run a technical SEO audit for https://example.com and summarize critical issues.
 - Run `npm run build` if `dist/server.js` is missing.
 - Use an absolute path in the MCP config.
 - Fully restart Claude Desktop after config changes.
-- Verify DataForSEO credentials if authentication fails.
+- Verify `SEOSCORE_API_KEY` or `PSI_API_KEY` if optional API checks fail.

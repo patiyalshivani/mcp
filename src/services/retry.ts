@@ -18,7 +18,7 @@ export async function withRetry<T>(operation: () => Promise<T>, options: RetryOp
       if (attempt >= options.attempts || !options.shouldRetry(error)) break;
 
       const delay = jitter(Math.min(options.maxDelayMs, options.baseDelayMs * 2 ** (attempt - 1)));
-      logger.warn({ attempt, delay }, "Retrying DataForSEO request");
+      logger.warn({ attempt, delay }, "Retrying API request");
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
