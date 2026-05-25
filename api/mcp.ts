@@ -1,13 +1,16 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 
+const commonHeaderEntries = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, POST, DELETE, OPTIONS",
+  "access-control-allow-headers": "authorization, content-type, accept, mcp-protocol-version, mcp-session-id, last-event-id",
+  "access-control-expose-headers": "mcp-session-id"
+};
+
 function setCommonHeaders(res: ServerResponse): void {
-  res.setHeader("access-control-allow-origin", "*");
-  res.setHeader("access-control-allow-methods", "GET, POST, DELETE, OPTIONS");
-  res.setHeader(
-    "access-control-allow-headers",
-    "authorization, content-type, accept, mcp-protocol-version, mcp-session-id, last-event-id"
-  );
-  res.setHeader("access-control-expose-headers", "mcp-session-id");
+  for (const [name, value] of Object.entries(commonHeaderEntries)) {
+    res.setHeader(name, value);
+  }
 }
 
 function getAuthMode(): "none" | "token" {
@@ -58,6 +61,99 @@ function redirectToHome(res: ServerResponse): void {
   setCommonHeaders(res);
   res.setHeader("location", "/");
   res.end();
+}
+
+function commonHeaders(): Headers {
+  return new Headers(commonHeaderEntries);
+}
+
+function jsonResponse(status: number, body: unknown): Response {
+  const headers = commonHeaders();
+  headers.set("content-type", "application/json");
+  return new Response(JSON.stringify(body), { status, headers });
+}
+
+function isAuthorizedRequest(request: Request): boolean {
+  if (getAuthMode() === "none") return true;
+  const expected = process.env.MCP_AUTH_TOKEN;
+  if (!expected) return false;
+  const header = request.headers.get("authorization");
+  if (!header) return false;
+  const match = /^Bearer\s+(.+)$/i.exec(header.trim());
+  return Boolean(match && match[1] === expected);
+}
+
+function isBrowserRequest(request: Request): boolean {
+  const accept = request.headers.get("accept");
+  return request.method === "GET" && Boolean(accept?.includes("text/html"));
+}
+
+function withCommonHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  for (const [name, value] of Object.entries(commonHeaderEntries)) {
+    headers.set(name, value);
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
+}
+
+async function handleWebRequest(request: Request): Promise<Response> {
+  try {
+    if (request.method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: commonHeaders() });
+    }
+
+    const url = new URL(request.url);
+    if (url.pathname.endsWith("/health")) {
+      return jsonResponse(200, {
+        status: "ok",
+        nodeVersion: process.version,
+        env: {
+          hasLogin: Boolean(process.env.DATAFORSEO_LOGIN),
+          hasPassword: Boolean(process.env.DATAFORSEO_PASSWORD),
+          hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
+          authMode: getAuthMode()
+        }
+      });
+    }
+
+    if (isBrowserRequest(request)) {
+      const headers = commonHeaders();
+      headers.set("location", "/");
+      return new Response(null, { status: 307, headers });
+    }
+
+    if (!isAuthorizedRequest(request)) {
+      const headers = commonHeaders();
+      headers.set("content-type", "application/json");
+      headers.set("www-authenticate", "Bearer");
+      return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers });
+    }
+
+    const [{ WebStandardStreamableHTTPServerTransport }, { createServer }] = await Promise.all([
+      import("@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js"),
+      import("../dist/createServer.js")
+    ]);
+
+    const transport = new WebStandardStreamableHTTPServerTransport({
+      sessionIdGenerator: undefined
+    });
+    const server = createServer();
+    await server.connect(transport);
+
+    const response = await transport.handleRequest(request);
+    return withCommonHeaders(response);
+  } catch (err) {
+    console.error("[api/mcp] web handler crashed:", err);
+    return jsonResponse(500, {
+      error: "handler_crashed",
+      message: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined
+    });
+  }
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
@@ -118,3 +214,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     }
   }
 }
+
+export const GET = handleWebRequest;
+export const POST = handleWebRequest;
+export const DELETE = handleWebRequest;
+export const OPTIONS = handleWebRequest;
