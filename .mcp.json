@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "dataforseo": {
+    "technical-seo-audit": {
       "type": "stdio",
       "command": "node",
       "args": ["dist/server.js"]

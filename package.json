@@ -1,12 +1,12 @@
 {
-  "name": "dataforseo-mcp",
+  "name": "technical-seo-audit-mcp",
   "version": "1.0.0",
-  "description": "Production-grade MCP server exposing DataForSEO APIs to AI agents.",
+  "description": "Technical SEO audit MCP server powered by DataForSEO OnPage APIs.",
   "type": "module",
   "private": true,
   "main": "dist/server.js",
   "bin": {
-    "dataforseo-mcp": "dist/server.js"
+    "technical-seo-audit-mcp": "dist/server.js"
   },
   "scripts": {
     "build": "tsc",

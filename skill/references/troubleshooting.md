@@ -20,7 +20,7 @@ Install Node.js with npm included. Restart the terminal after installation.
 Run:
 
 ```powershell
-cd C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+cd C:\Users\Admin\Desktop\mcp
 npm install
 ```
 

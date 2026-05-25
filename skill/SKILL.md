@@ -1,20 +1,20 @@
 ---
-name: dataforseo-mcp
+name: technical-seo-audit-mcp
 description: >
-  Instructions for using the local DataForSEO MCP server with Claude, Codex,
-  Cursor, VS Code Agent Mode, and SEO agents. Use when connecting DataForSEO
-  tools, setting up MCP config, testing keyword/SERP/on-page/backlink tools,
-  troubleshooting credentials, or falling back to no-API SEO analysis.
+  Instructions for using the local technical SEO audit MCP server with Claude,
+  Codex, Cursor, VS Code Agent Mode, and SEO agents. Use when connecting the
+  audit tool, setting up MCP config, testing URL-level audits, troubleshooting
+  credentials, or falling back to no-API technical SEO analysis.
 ---
 
-# DataForSEO MCP Skill
+# Technical SEO Audit MCP Skill
 
-Use this skill to work with the local DataForSEO MCP server project.
+Use this skill to work with the local technical SEO audit MCP server project.
 
 The server project is located at:
 
 ```text
-C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+C:\Users\Admin\Desktop\mcp
 ```
 
 ## Reference Files
@@ -22,7 +22,7 @@ C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
 Load these files when needed:
 
 - `references/mcp-server-setup.md`: build, run, connect, and test the MCP server.
-- `references/tool-usage.md`: available MCP tools and example prompts.
+- `references/tool-usage.md`: technical audit tool usage and example prompts.
 - `references/no-api-fallbacks.md`: what to do when credentials or MCP tools are unavailable.
 - `references/troubleshooting.md`: common errors and fixes.
 
@@ -31,24 +31,19 @@ Load these files when needed:
 - Never hardcode DataForSEO credentials.
 - Use environment variables or MCP client `env` blocks only.
 - Never print or log `DATAFORSEO_PASSWORD`.
-- If MCP tools are unavailable, do not invent live keyword, ranking, traffic, backlink, or SERP data.
+- If MCP tools are unavailable, do not invent live crawl, status, schema, link, or performance data.
 - If credentials are missing, use no-API fallback analysis and clearly state the limitation.
 - Prefer the local MCP server already built in this folder over asking the user to regenerate files.
 
-## Expected Local Tools
+## Expected Local Tool
 
-The current local server exposes:
+The current local server exposes only:
 
-- `keyword_research`
-- `serp_analysis`
-- `onpage_analysis`
-- `backlinks_analysis`
-- `competitors_analysis`
-- `ranked_keywords`
+- `technical_seo_audit`
 
 ## Fast Path
 
-If the user asks to use DataForSEO:
+If the user asks to run a technical SEO audit:
 
 1. Check whether MCP tools are available.
 2. If available, call the relevant tool.

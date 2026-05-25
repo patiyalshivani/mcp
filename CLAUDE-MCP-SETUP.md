@@ -1,9 +1,9 @@
-# Claude MCP Setup For This DataForSEO Server
+# Claude MCP Setup For This Technical SEO Audit Server
 
 This project is already generated at:
 
 ```text
-C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+C:\Users\Admin\Desktop\mcp
 ```
 
 Use this file when connecting the server to Claude Desktop, Claude Code, Codex, Cursor, or another MCP client.
@@ -11,7 +11,7 @@ Use this file when connecting the server to Claude Desktop, Claude Code, Codex, 
 ## Build
 
 ```powershell
-cd C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+cd C:\Users\Admin\Desktop\mcp
 npm install
 npm run build
 ```
@@ -19,7 +19,7 @@ npm run build
 The server entrypoint is:
 
 ```text
-C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp\dist\server.js
+C:\Users\Admin\Desktop\mcp\dist\server.js
 ```
 
 ## Credentials
@@ -47,10 +47,10 @@ Use:
 ```json
 {
   "mcpServers": {
-    "dataforseo": {
+    "technical-seo-audit": {
       "command": "node",
       "args": [
-        "C:\\Users\\sharm\\OneDrive\\Desktop\\mcp\\dataforseo-mcp\\dist\\server.js"
+        "C:\\Users\\Admin\\Desktop\\mcp\\dist\\server.js"
       ],
       "env": {
         "DATAFORSEO_LOGIN": "your-login",
@@ -64,16 +64,11 @@ Use:
 
 Restart Claude Desktop after saving.
 
-## Available Tools
+## Available Tool
 
-This MCP server registers:
+This MCP server registers only:
 
-- `keyword_research`
-- `serp_analysis`
-- `onpage_analysis`
-- `backlinks_analysis`
-- `competitors_analysis`
-- `ranked_keywords`
+- `technical_seo_audit`
 
 ## Test Prompts
 
@@ -82,15 +77,7 @@ What MCP tools are available?
 ```
 
 ```text
-Use DataForSEO MCP tools to analyze keyword opportunities for "technical SEO".
-```
-
-```text
-Use DataForSEO MCP tools to analyze SERP competitors for "best SEO software".
-```
-
-```text
-Use DataForSEO MCP tools to generate SEO recommendations for example.com.
+Run a technical SEO audit for https://example.com and summarize critical issues.
 ```
 
 ## If It Does Not Work

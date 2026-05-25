@@ -12,7 +12,7 @@ const fallbackHtml = `<!doctype html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shivani MCP Server</title>
+    <title>Shivani Technical SEO Audit MCP Server</title>
     <style>
       body {
         margin: 0;
@@ -49,8 +49,8 @@ const fallbackHtml = `<!doctype html>
   </head>
   <body>
     <main>
-      <h1>Welcome to Shivani MCP Server</h1>
-      <p>This deployment is online. Use /mcp for MCP clients and /health for health checks.</p>
+      <h1>Welcome to Shivani Technical SEO Audit MCP Server</h1>
+      <p>This deployment is online for technical SEO audits only. Use /mcp for MCP clients and /health for health checks.</p>
     </main>
   </body>
 </html>`;
@@ -67,7 +67,7 @@ export async function startStdioServer(): Promise<void> {
   const server = createServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  logger.info("DataForSEO MCP server started over stdio");
+  logger.info("Technical SEO audit MCP server started over stdio");
 }
 
 function setCommonHeaders(res: ServerResponse): void {
@@ -211,7 +211,7 @@ function isDirectRun(): boolean {
 
 if (isDirectRun()) {
   startStdioServer().catch((error) => {
-    logger.fatal({ error }, "DataForSEO MCP server failed to start");
+    logger.fatal({ error }, "Technical SEO audit MCP server failed to start");
     process.exit(1);
   });
 }

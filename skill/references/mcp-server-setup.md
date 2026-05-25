@@ -1,9 +1,9 @@
 # MCP Server Setup
 
-The DataForSEO MCP server already exists at:
+The technical SEO audit MCP server already exists at:
 
 ```text
-C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+C:\Users\Admin\Desktop\mcp
 ```
 
 Do not regenerate the project unless this folder is missing.
@@ -11,7 +11,7 @@ Do not regenerate the project unless this folder is missing.
 ## Build Locally
 
 ```powershell
-cd C:\Users\sharm\OneDrive\Desktop\mcp\dataforseo-mcp
+cd C:\Users\Admin\Desktop\mcp
 npm install
 npm run build
 ```
@@ -36,56 +36,22 @@ DATAFORSEO_BASE_URL=https://api.dataforseo.com
 
 Never paste real credentials into chat when a local file or config can be used.
 
-## Claude Desktop Config
-
-Windows config path:
-
-```text
-%APPDATA%\Claude\claude_desktop_config.json
-```
-
-Use this config:
+## MCP Client Config
 
 ```json
 {
   "mcpServers": {
-    "dataforseo": {
+    "technical-seo-audit": {
       "command": "node",
       "args": [
-        "C:\\Users\\sharm\\OneDrive\\Desktop\\mcp\\dataforseo-mcp\\dist\\server.js"
-      ],
-      "env": {
-        "DATAFORSEO_LOGIN": "your-login",
-        "DATAFORSEO_PASSWORD": "your-password",
-        "DATAFORSEO_BASE_URL": "https://api.dataforseo.com"
-      }
+        "C:\\Users\\Admin\\Desktop\\mcp\\dist\\server.js"
+      ]
     }
   }
 }
 ```
 
-Restart Claude Desktop fully after saving.
-
-## Codex, Cursor, VS Code Agent Mode
-
-Use the same MCP server values:
-
-```json
-{
-  "mcpServers": {
-    "dataforseo": {
-      "command": "node",
-      "args": [
-        "C:\\Users\\sharm\\OneDrive\\Desktop\\mcp\\dataforseo-mcp\\dist\\server.js"
-      ],
-      "env": {
-        "DATAFORSEO_LOGIN": "your-login",
-        "DATAFORSEO_PASSWORD": "your-password"
-      }
-    }
-  }
-}
-```
+Restart the MCP client fully after saving.
 
 ## Expected Behavior
 
@@ -103,11 +69,6 @@ Ask the client:
 What MCP tools are available?
 ```
 
-Expected DataForSEO tools:
+Expected tool:
 
-- `keyword_research`
-- `serp_analysis`
-- `onpage_analysis`
-- `backlinks_analysis`
-- `competitors_analysis`
-- `ranked_keywords`
+- `technical_seo_audit`

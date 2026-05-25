@@ -5,7 +5,7 @@ const html = `<!doctype html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shivani MCP Server</title>
+    <title>Shivani Technical SEO Audit MCP Server</title>
     <style>
       :root {
         color-scheme: light;
@@ -110,8 +110,8 @@ const html = `<!doctype html>
   <body>
     <main>
       <div class="eyebrow">Server online</div>
-      <h1>Welcome to Shivani MCP Server</h1>
-      <p>This Vercel deployment is ready. MCP clients should connect through the secure endpoint, while health checks remain available separately.</p>
+      <h1>Welcome to Shivani Technical SEO Audit MCP Server</h1>
+      <p>This server is focused on technical SEO audits only. MCP clients can run a URL-level audit through the secure endpoint, while health checks remain available separately.</p>
       <div class="actions">
         <a href="/health">Health Check</a>
         <a class="secondary" href="/mcp">MCP Endpoint</a>

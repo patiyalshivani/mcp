@@ -8,10 +8,10 @@ import { toolSuccess } from "./toolResult.js";
 
 export function registerOnPageAnalysisTool(server: McpServer, client: DataForSeoClient): void {
   server.registerTool(
-    "onpage_analysis",
+    "technical_seo_audit",
     {
-      title: "OnPage Analysis",
-      description: "Analyze a URL with DataForSEO OnPage Instant Pages and return title, metadata, links, schema, status, and page metrics.",
+      title: "Technical SEO Audit",
+      description: "Run a technical SEO audit for a URL with DataForSEO OnPage Instant Pages and return status, metadata, headings, schema, links, checks, and page metrics.",
       inputSchema: OnPageAnalysisInputSchema.shape,
       annotations: { readOnlyHint: true, idempotentHint: true }
     },
@@ -19,7 +19,7 @@ export function registerOnPageAnalysisTool(server: McpServer, client: DataForSeo
       try {
         const args = parseWithSchema(OnPageAnalysisInputSchema, input);
         const url = normalizeUrl(args.url);
-        logger.info({ tool: "onpage_analysis", host: new URL(url).hostname }, "Tool called");
+        logger.info({ tool: "technical_seo_audit", host: new URL(url).hostname }, "Tool called");
 
         const response = await client.post<Record<string, unknown>[]>(
           "/v3/on_page/instant_pages",
@@ -31,7 +31,7 @@ export function registerOnPageAnalysisTool(server: McpServer, client: DataForSeo
         const meta = objectAt(page, "meta");
         const checks = objectAt(page, "checks");
 
-        return toolSuccess("On-page analysis completed.", {
+        return toolSuccess("Technical SEO audit completed.", {
           url,
           status_code: page.status_code ?? result.status_code ?? null,
           title: meta.title ?? page.title ?? null,

@@ -8,17 +8,13 @@ Do not invent live SEO data.
 
 Never fabricate:
 
-- keyword volume
-- rankings
-- SERP positions
-- backlink counts
-- referring domains
-- domain authority
-- organic traffic
 - Search Console data
 - GA4 data
 - Lighthouse scores
 - Core Web Vitals field data
+- crawl results that were not actually checked
+- HTTP status codes that were not verified
+- schema, heading, or link findings that were not observed
 
 ## DataForSEO Missing
 
@@ -26,12 +22,12 @@ Fallback:
 
 - analyze public pages
 - inspect titles, metadata, schema, headings, links, sitemap, and robots.txt
-- ask for exported keyword, SERP, or backlink data if the user needs live metrics
+- ask for a crawl export if the user needs site-wide technical data
 
 State:
 
 ```text
-DataForSEO tools are not connected, so live keyword volume, SERP, and backlink metrics were not verified.
+DataForSEO tools are not connected, so live technical audit checks were not verified.
 ```
 
 ## Credentials Missing
@@ -65,12 +61,11 @@ Allowed observations:
 - missing lazy loading
 - slow fetch response time
 
-## Backlink Data Missing
+## Crawl Data Missing
 
 Fallback:
 
-- inspect linkable assets
-- review authority/trust signals on public pages
-- ask for Ahrefs, Semrush, Moz, or DataForSEO export
+- inspect the provided public URL manually
+- ask for a crawl export from Screaming Frog, Sitebulb, Ahrefs, Semrush, or DataForSEO
 
-Do not estimate backlink counts.
+Do not estimate crawl-wide issue counts.
