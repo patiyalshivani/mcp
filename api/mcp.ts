@@ -10,7 +10,14 @@ function setCommonHeaders(res: ServerResponse): void {
   res.setHeader("access-control-expose-headers", "mcp-session-id");
 }
 
+function getAuthMode(): "none" | "token" {
+  const mode = process.env.MCP_AUTH_MODE?.toLowerCase();
+  if (mode === "none" || mode === "noauth" || mode === "public") return "none";
+  return process.env.MCP_AUTH_TOKEN ? "token" : "none";
+}
+
 function isAuthorized(req: IncomingMessage): boolean {
+  if (getAuthMode() === "none") return true;
   const expected = process.env.MCP_AUTH_TOKEN;
   if (!expected) return false;
   const header = req.headers["authorization"];
@@ -43,7 +50,7 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
 function isBrowserGet(req: IncomingMessage): boolean {
   if (req.method !== "GET") return false;
   const accept = req.headers.accept;
-  return typeof accept === "string" && !accept.includes("text/event-stream");
+  return typeof accept === "string" && accept.includes("text/html");
 }
 
 function redirectToHome(res: ServerResponse): void {
@@ -69,7 +76,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       return sendJson(res, 200, {
         status: "ok",
         nodeVersion: process.version,
-        env: { hasLogin, hasPassword, hasToken }
+        env: { hasLogin, hasPassword, hasToken, authMode: getAuthMode() }
       });
     }
 
