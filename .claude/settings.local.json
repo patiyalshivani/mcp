@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($n = Get-Command node -ErrorAction SilentlyContinue; if \\($n\\) { Write-Output \"NODE: $\\($n.Source\\)\"; node --version } else { Write-Output \"NODE: NOT INSTALLED\" })"
+    ]
+  }
+}

@@ -28,7 +28,7 @@ export function registerSerpAnalysisTool(server: McpServer, client: DataForSeoCl
               location_name: args.location,
               language_name: args.language,
               device: args.device,
-              depth: Math.max(args.limit, 10)
+              depth: Math.max(args.limit ?? 10, 10)
             }
           ],
           { cacheTtlSeconds: 1800 }
