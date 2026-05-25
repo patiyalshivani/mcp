@@ -1,6 +1,4 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { createServer } from "../dist/createServer.js";
 
 function setCommonHeaders(res: ServerResponse): void {
   res.setHeader("access-control-allow-origin", "*");
@@ -42,6 +40,19 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
   res.end(JSON.stringify(body));
 }
 
+function isBrowserGet(req: IncomingMessage): boolean {
+  if (req.method !== "GET") return false;
+  const accept = req.headers.accept;
+  return typeof accept === "string" && !accept.includes("text/event-stream");
+}
+
+function redirectToHome(res: ServerResponse): void {
+  res.statusCode = 307;
+  setCommonHeaders(res);
+  res.setHeader("location", "/");
+  res.end();
+}
+
 export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
   try {
     setCommonHeaders(res);
@@ -62,12 +73,20 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       });
     }
 
+    if (isBrowserGet(req)) {
+      return redirectToHome(res);
+    }
+
     if (!isAuthorized(req)) {
       res.setHeader("www-authenticate", "Bearer");
       return sendJson(res, 401, { error: "unauthorized" });
     }
 
     const body = req.method === "POST" ? await readBody(req) : undefined;
+    const [{ StreamableHTTPServerTransport }, { createServer }] = await Promise.all([
+      import("@modelcontextprotocol/sdk/server/streamableHttp.js"),
+      import("../dist/createServer.js")
+    ]);
 
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined
