@@ -1,9 +1,28 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
   "functions": {
     "api/mcp.ts": {
       "maxDuration": 60,
-      "includeFiles": "src/**"
+      "includeFiles": "dist/**"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api",
+      "destination": "/api/home"
+    },
+    {
+      "source": "/",
+      "destination": "/api/home"
+    }
+  ]
 }

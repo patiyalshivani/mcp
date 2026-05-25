@@ -1,6 +1,16 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { createServer } from "../src/createServer.js";
+import { createServer } from "../dist/createServer.js";
+
+function setCommonHeaders(res: ServerResponse): void {
+  res.setHeader("access-control-allow-origin", "*");
+  res.setHeader("access-control-allow-methods", "GET, POST, DELETE, OPTIONS");
+  res.setHeader(
+    "access-control-allow-headers",
+    "authorization, content-type, accept, mcp-protocol-version, mcp-session-id, last-event-id"
+  );
+  res.setHeader("access-control-expose-headers", "mcp-session-id");
+}
 
 function isAuthorized(req: IncomingMessage): boolean {
   const expected = process.env.MCP_AUTH_TOKEN;
@@ -27,20 +37,33 @@ async function readBody(req: IncomingMessage): Promise<unknown> {
 
 function sendJson(res: ServerResponse, status: number, body: unknown): void {
   res.statusCode = status;
+  setCommonHeaders(res);
   res.setHeader("content-type", "application/json");
   res.end(JSON.stringify(body));
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
   try {
+    setCommonHeaders(res);
+
+    if (req.method === "OPTIONS") {
+      res.statusCode = 204;
+      return res.end();
+    }
+
     if (req.method === "GET" && req.url?.includes("/health")) {
       const hasLogin = Boolean(process.env.DATAFORSEO_LOGIN);
       const hasPassword = Boolean(process.env.DATAFORSEO_PASSWORD);
       const hasToken = Boolean(process.env.MCP_AUTH_TOKEN);
-      return sendJson(res, 200, { status: "ok", env: { hasLogin, hasPassword, hasToken } });
+      return sendJson(res, 200, {
+        status: "ok",
+        nodeVersion: process.version,
+        env: { hasLogin, hasPassword, hasToken }
+      });
     }
 
     if (!isAuthorized(req)) {
+      res.setHeader("www-authenticate", "Bearer");
       return sendJson(res, 401, { error: "unauthorized" });
     }
 
