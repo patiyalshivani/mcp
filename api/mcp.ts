@@ -114,6 +114,7 @@ async function handleWebRequest(request: Request): Promise<Response> {
         env: {
           hasSeoScoreKey: Boolean(process.env.SEOSCORE_API_KEY),
           hasPsiKey: Boolean(process.env.PSI_API_KEY),
+          hasSemrushKey: Boolean(process.env.SEMRUSH_API_KEY),
           hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
           authMode: getAuthMode()
         }
@@ -168,11 +169,12 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     if (req.method === "GET" && req.url?.includes("/health")) {
       const hasSeoScoreKey = Boolean(process.env.SEOSCORE_API_KEY);
       const hasPsiKey = Boolean(process.env.PSI_API_KEY);
+      const hasSemrushKey = Boolean(process.env.SEMRUSH_API_KEY);
       const hasToken = Boolean(process.env.MCP_AUTH_TOKEN);
       return sendJson(res, 200, {
         status: "ok",
         nodeVersion: process.version,
-        env: { hasSeoScoreKey, hasPsiKey, hasToken, authMode: getAuthMode() }
+        env: { hasSeoScoreKey, hasPsiKey, hasSemrushKey, hasToken, authMode: getAuthMode() }
       });
     }
 

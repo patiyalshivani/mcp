@@ -23,7 +23,8 @@ export function registerTechnicalSeoAuditTool(server: McpServer): void {
 
         const report = await runTechnicalAudit(url, {
           includePageSpeed: args.include_page_speed ?? true,
-          includeOptionalApiChecks: args.include_optional_api_checks ?? true
+          includeOptionalApiChecks: args.include_optional_api_checks ?? true,
+          includeWordDocument: args.include_word_document ?? true
         });
 
         return toolSuccess("Technical SEO audit completed.", report);

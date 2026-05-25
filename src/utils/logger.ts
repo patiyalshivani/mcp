@@ -6,6 +6,7 @@ export const logger = pino({
     paths: [
       "SEOSCORE_API_KEY",
       "PSI_API_KEY",
+      "SEMRUSH_API_KEY",
       "password",
       "*apiKey",
       "*.apiKey",

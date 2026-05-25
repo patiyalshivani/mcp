@@ -29,6 +29,9 @@ Use environment variables only:
 ```env
 SEOSCORE_API_KEY=
 PSI_API_KEY=
+SEMRUSH_API_KEY=
+SEMRUSH_API_ENDPOINT=https://api-semrush.groupbuyseo.org/
+SEMRUSH_DATABASE=us
 TECHNICAL_AUDIT_TIMEOUT_MS=30000
 TECHNICAL_AUDIT_USER_AGENT=TechnicalSeoAuditMcp/1.0
 ```
@@ -55,7 +58,10 @@ Use:
       ],
       "env": {
         "SEOSCORE_API_KEY": "",
-        "PSI_API_KEY": ""
+        "PSI_API_KEY": "",
+        "SEMRUSH_API_KEY": "",
+        "SEMRUSH_API_ENDPOINT": "https://api-semrush.groupbuyseo.org/",
+        "SEMRUSH_DATABASE": "us"
       }
     }
   }
@@ -69,6 +75,8 @@ Restart Claude Desktop after saving.
 This MCP server registers only:
 
 - `technical_seo_audit`
+
+The audit includes status labels, sitemap URL inventory, robots/indexability checks, mobile viewport checks, image ALT checks, and a Word-compatible document payload.
 
 ## Test Prompts
 
@@ -87,4 +95,4 @@ Run a technical SEO audit for https://example.com and summarize critical issues.
 - Run `npm run build` if `dist/server.js` is missing.
 - Use an absolute path in the MCP config.
 - Fully restart Claude Desktop after config changes.
-- Verify `SEOSCORE_API_KEY` or `PSI_API_KEY` if optional API checks fail.
+- Verify `SEOSCORE_API_KEY`, `PSI_API_KEY`, or `SEMRUSH_API_KEY` if optional API checks fail.

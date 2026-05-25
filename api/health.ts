@@ -20,6 +20,7 @@ export default function handler(_req: IncomingMessage, res: ServerResponse): voi
     env: {
       hasSeoScoreKey: Boolean(process.env.SEOSCORE_API_KEY),
       hasPsiKey: Boolean(process.env.PSI_API_KEY),
+      hasSemrushKey: Boolean(process.env.SEMRUSH_API_KEY),
       hasToken: Boolean(process.env.MCP_AUTH_TOKEN),
       authMode: normalizedAuthMode
     }

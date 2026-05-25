@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Technical SEO Audit - https://bellasante.com/</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #1f2933; line-height: 1.45; }
+    h1, h2, h3 { color: #111827; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    h2 { font-size: 20px; margin-top: 28px; border-bottom: 1px solid #d1d5db; padding-bottom: 6px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; }
+    th, td { border: 1px solid #d1d5db; padding: 7px; vertical-align: top; font-size: 12px; }
+    th { background: #f3f4f6; text-align: left; }
+    .score { font-size: 34px; font-weight: 700; }
+    .pill { color: #fff; font-weight: 700; padding: 3px 8px; border-radius: 3px; display: inline-block; }
+    .green { background: #15803d; }
+    .red { background: #b91c1c; }
+    .amber { background: #b45309; }
+    .gray { background: #6b7280; }
+    .muted { color: #6b7280; }
+  </style>
+</head>
+<body>
+  <h1>Technical SEO Audit</h1>
+  <p><strong>URL:</strong> https://bellasante.com/<br>
+  <strong>Generated:</strong> 2026-05-25T17:49:19.836Z<br>
+  <strong>Status:</strong> <span class="pill amber">Warning</span></p>
+
+  <h2>Executive Summary</h2>
+  <p class="score">67/100</p>
+  <p>This report summarizes crawlability, indexability, metadata, mobile readiness, content quality, sitemap inventory, structured data, analytics, and priority fixes.</p>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Total issues</td><td>11</td></tr>
+    <tr><td>Critical issues</td><td>0</td></tr>
+    <tr><td>High issues</td><td>1</td></tr>
+    <tr><td>Medium issues</td><td>1</td></tr>
+    <tr><td>Low-priority issues</td><td>9</td></tr>
+  </table>
+
+  <h2>Top Critical Issues</h2>
+  <table>
+    <tr><th>Severity</th><th>Type</th><th>Issue</th><th>Recommendation</th></tr>
+    
+      <tr>
+        <td><span class="pill red">High</span></td>
+        <td>Mixed Content</td>
+        <td>HTTPS page references insecure HTTP assets.</td>
+        <td>Update asset URLs to HTTPS.</td>
+      </tr>
+  </table>
+
+  <h2>Score Summary Table</h2>
+  <table>
+    <tr><th>Check</th><th>Status</th><th>Value</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>Overall score</td>
+      <td><span class="pill amber">Warning</span></td>
+      <td>67</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>robots.txt present</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>XML sitemap present</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Indexed pages query</td>
+      <td><span class="pill gray">Unverified</span></td>
+      <td>site:bellasante.com</td>
+      <td>Verify in Google Search Console or run the site: query manually.</td>
+    </tr>
+    <tr>
+      <td>Meta robots / X-Robots-Tag</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>Indexable</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Mobile viewport</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>width=device-width,initial-scale=1</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Navigation &lt;nav&gt;</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>true</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Breadcrumbs</td>
+      <td><span class="pill amber">Warning</span></td>
+      <td>false</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Image alt text</td>
+      <td><span class="pill red">Issue</span></td>
+      <td>10 missing of 31</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Thin content</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>1560 words</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Social sharing buttons</td>
+      <td><span class="pill amber">Warning</span></td>
+      <td>Not detected</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sitemap URL count</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>497</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Broken sitemap URLs sampled</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Non-canonical sitemap URLs sampled</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Noindex pages in sitemap sample</td>
+      <td><span class="pill green">Pass</span></td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PageSpeed/Core Web Vitals</td>
+      <td><span class="pill gray">Unverified</span></td>
+      <td>Not verified</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <h2>Website URL Inventory</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Total URLs found in sitemap inventory</td><td>497</td></tr>
+    <tr><td>Broken sampled URLs</td><td>0</td></tr>
+    <tr><td>Non-canonical sampled URLs</td><td>0</td></tr>
+    <tr><td>Noindex sampled URLs</td><td>0</td></tr>
+  </table>
+
+  <h2>Findings Table</h2>
+  <table>
+    <tr><th>Severity</th><th>Type</th><th>Issue</th><th>Confidence</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td><span class="pill red">High</span></td>
+      <td>Mixed Content</td>
+      <td>HTTPS page references insecure HTTP assets.</td>
+      <td>Verified</td>
+      <td>Update asset URLs to HTTPS.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>URL Structure</td>
+      <td>URL path is not readable.</td>
+      <td>Verified</td>
+      <td>Use short, lowercase, readable URLs with hyphens and minimal parameters.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Meta Description</td>
+      <td>Meta description length is 180 characters.</td>
+      <td>Verified</td>
+      <td>Rewrite the description to stay close to 140-160 characters.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Breadcrumbs</td>
+      <td>Breadcrumb navigation was not detected.</td>
+      <td>Partially Verified</td>
+      <td>Add visible breadcrumbs and BreadcrumbList schema on deeper pages where hierarchy matters.</td>
+    </tr>
+    <tr>
+      <td><span class="pill amber">Medium</span></td>
+      <td>Image Optimization</td>
+      <td>10 image(s) are missing ALT text.</td>
+      <td>Verified</td>
+      <td>Add concise, descriptive ALT text to meaningful images.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Image Optimization</td>
+      <td>13 image(s) do not declare lazy loading.</td>
+      <td>Verified</td>
+      <td>Use lazy loading for below-the-fold images.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Image Optimization</td>
+      <td>28 image(s) appear to use non-modern formats.</td>
+      <td>Partially Verified</td>
+      <td>Serve WebP or AVIF where practical and compress large images.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Text to HTML Ratio</td>
+      <td>Text to HTML ratio is 4.1%.</td>
+      <td>Estimated</td>
+      <td>Reduce unnecessary markup and ensure meaningful crawlable text is present.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Google Tag Manager</td>
+      <td>GTM container was not detected in the HTML source.</td>
+      <td>Partially Verified</td>
+      <td>Add GTM if tag management is required, or document the alternative implementation.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Blog Presence</td>
+      <td>No blog/resources/articles link was detected on the audited page.</td>
+      <td>Partially Verified</td>
+      <td>Create or expose an SEO-focused content section if organic content growth is a priority.</td>
+    </tr>
+    <tr>
+      <td><span class="pill gray">Low</span></td>
+      <td>Social Sharing</td>
+      <td>No social sharing buttons or share links were detected.</td>
+      <td>Partially Verified</td>
+      <td>Add social sharing controls where editorial content or promotional pages benefit from sharing.</td>
+    </tr>
+  </table>
+
+  <h2>Priority Recommendations</h2>
+  <h3>Immediate Fixes: 0-7 Days</h3>
+  <ul><li>Mixed Content: Update asset URLs to HTTPS.</li></ul>
+  <h3>Mid-Term Improvements: 7-30 Days</h3>
+  <ul><li>Image Optimization: Add concise, descriptive ALT text to meaningful images.</li></ul>
+  <h3>Long-Term SEO Strategy: 30-90 Days</h3>
+  <ul><li>URL Structure: Use short, lowercase, readable URLs with hyphens and minimal parameters.</li><li>Meta Description: Rewrite the description to stay close to 140-160 characters.</li><li>Breadcrumbs: Add visible breadcrumbs and BreadcrumbList schema on deeper pages where hierarchy matters.</li><li>Image Optimization: Use lazy loading for below-the-fold images.</li><li>Image Optimization: Serve WebP or AVIF where practical and compress large images.</li><li>Text to HTML Ratio: Reduce unnecessary markup and ensure meaningful crawlable text is present.</li><li>Google Tag Manager: Add GTM if tag management is required, or document the alternative implementation.</li><li>Blog Presence: Create or expose an SEO-focused content section if organic content growth is a priority.</li></ul>
+
+  <p class="muted">Status colors: green means present/pass, red means issue, amber means warning, gray means unverified.</p>
+</body>
+</html>
