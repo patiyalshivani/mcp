@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell($n = Get-Command node -ErrorAction SilentlyContinue; if \\($n\\) { Write-Output \"NODE: $\\($n.Source\\)\"; node --version } else { Write-Output \"NODE: NOT INSTALLED\" })"
+      "PowerShell($n = Get-Command node -ErrorAction SilentlyContinue; if \\($n\\) { Write-Output \"NODE: $\\($n.Source\\)\"; node --version } else { Write-Output \"NODE: NOT INSTALLED\" })",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('hex'\\)\\)\")",
+      "PowerShell(npx --prefix \"c:\\\\Users\\\\Admin\\\\Desktop\\\\mcp\" tsc --noEmit -p \"c:\\\\Users\\\\Admin\\\\Desktop\\\\mcp\\\\api\\\\tsconfig.json\" 2>&1)"
     ]
   }
 }
